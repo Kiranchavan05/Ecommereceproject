@@ -1,5 +1,6 @@
 import React from "react";
-import { Container,Alert } from "react-bootstrap";
+import { Container} from "react-bootstrap";
+import BottomCartButton from "./BottomCartButton";
 
 const productsArr = [
   {
@@ -32,13 +33,13 @@ const productsArr = [
   },
 ];
 
-const ProductsList = () => {
+const ProductsList = (props) => {
   const product = productsArr.map((prod) => (
     <div
       key={prod.id}
       style={{
         margin: "0 auto",
-        maxWidth: "100%",
+        maxWidth: "10%",
         padding: "20px 30px",
         display: "flex",
         justifyContent: "space-around",
@@ -62,17 +63,16 @@ const ProductsList = () => {
         >
           {prod.title}
         </h2>
-        <div style={{ margin: "30px" }}>
+        <div style={{ margin: "0px" }}>
           <img
             src={prod.imageUrl}
             alt={prod.title}
             style={{
-              transformOrigin: "center center",
+              // transformOrigin: "center center",
               objectFit: "cover",
               padding: "0px",
               margin: "0px",
               transition: "ease-in 0.5s",
-              filter: "brightness(100%)",
               height: "250px",
               width: "250px",
             }}
@@ -80,7 +80,7 @@ const ProductsList = () => {
         </div>
         <div
           style={{
-            margin: "30px",
+            margin: "20px",
             alignItems: "center",
             justifyContent: "space-between",
             background: "white",
@@ -88,16 +88,16 @@ const ProductsList = () => {
             display: "flex",
           }}
         >
-          <span>Price: ${prod.price}</span>
+          <span> ${prod.price}</span>
           <button
             style={{
-              cursor: "pointer",
+              
               padding: "8px",
               color: "white",
               border: "none",
               fontSize: "15px",
               fontWeight: "bold",
-              borderRadius: "4%",
+              borderRadius: "10%",
               background: "#56CCF2",
             }}
           >
@@ -110,7 +110,7 @@ const ProductsList = () => {
 
   return (
     <Container
-      style={{ marginTop: "30px", textAlign: "center" }}
+      style={{ marginTop: "10px", textAlign: "center" }}
     >
       <h1
         style={{
@@ -119,15 +119,14 @@ const ProductsList = () => {
           padding: "20px",
           fontSize: "30px",
           fontWeight: "bold",
+          fontStyle:"oblique"
         }}
       >
         MUSIC
       </h1>
       <div> {product} </div>
+      <BottomCartButton onClick={props.onClick} />
       
-      <Alert className="bg-secondary text-white ">
-        <h1><Alert.Heading >The Generics</Alert.Heading></h1> 
-      </Alert>
       
     </Container>
   );

@@ -1,14 +1,31 @@
-
-import React from "react";
+// import Cart from "./component/Cart";
+import React ,{useState}from "react";
 import "./App.css";
 import Header from "./component/Header";
-import ProductsList from "./component/ProductList";
+import Cart from "./component/Cart";
+import ProductsList from './component/ProductList'
+
+
 
 function App() {
+  const [showcart,setShowCart]=useState(false)
+
+  const showCartHander=()=>{
+    setShowCart(true);
+  }
+
+  const hideCartHandler=()=>{
+    setShowCart(false)
+  }
+
+
   return (
     <React.Fragment>
-      <Header />
-      <ProductsList  />
+      
+      <Header onClick={showCartHander} />
+      <ProductsList  onClick={showCartHander}/>
+      {showcart &&<Cart onClose={hideCartHandler}/>}
+      
     </React.Fragment>
   );
 }
