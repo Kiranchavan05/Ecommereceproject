@@ -1,29 +1,37 @@
-import React from "react";
+import React,{useContext} from "react";
+import CartContext from "../store/Cart-Context";
 
-const cartElements = [
-  {
-    title: "Colors",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    quantity: 2,
-  },
-  {
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    quantity: 3,
-  },
-  {
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    quantity: 1,
-  },
-];
+import  Modal  from './Modal'
+
+// const cartElements = [
+//   {
+//     title: "Colors",
+//     price: 100,
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+//     quantity: 2,
+//   },
+//   {
+//     title: "Black and white Colors",
+//     price: 50,
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+//     quantity: 3,
+//   },
+//   {
+//     title: "Yellow and Black Colors",
+//     price: 70,
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+//     quantity: 1,
+//   },
+//];
 
 const Cart = (props) => {
+
+  const cartCtx=useContext(CartContext)
+  const totalAmount=`$${cartCtx.totalAmount}`
+
+  
   return (
-    <div
+    <Modal onClose={props.onClose}
       style={{
         margin: " 0px",
         display: "flex",
@@ -35,6 +43,7 @@ const Cart = (props) => {
         border: "1px solid rgb(177, 103, 103)",
       }}
     >
+
       {
         <div>
           <h2 style={{ margin: "20px 0px", padding: "0" }}>CART</h2>
@@ -92,7 +101,7 @@ const Cart = (props) => {
             </span>
           </div>
           <div>
-            {cartElements.map((prod) => (
+            {cartCtx.items.map((prod) => (
               <div style={{ fontsize: "1px", display: "flex" }}>
                 <div>
                   <span
@@ -186,19 +195,17 @@ const Cart = (props) => {
               margin: "20px",
             }}
           >
+            <span
+              style={{ boxSizing: "border-box", margin: "0", padding: "0" }}>
+              {totalAmount}
+            </span>
             <h1
               style={{
                 marginRight: "10px",
                 fontSize: "1.5rem",
               }}
-            >
-              Total
-            </h1>
-            <span
-              style={{ boxSizing: "border-box", margin: "0", padding: "0" }}
-            >
-              Rs. 220
-            </span>
+            >Total</h1>
+            
           </div>
           <div>
             <button
@@ -223,7 +230,7 @@ const Cart = (props) => {
           </div>
         </div>
       }
-    </div>
+    </Modal>
   );
 };
 

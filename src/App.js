@@ -1,32 +1,37 @@
 // import Cart from "./component/Cart";
 import React ,{useState}from "react";
-import "./App.css";
+
 import Header from "./component/Header";
 import Cart from "./component/Cart";
 import ProductsList from './component/ProductList'
+import Footer from "./component/Footer";
+import CartProvider from "./store/CartProvider";
 
 
 
 function App() {
   const [showcart,setShowCart]=useState(false)
 
-  const showCartHander=()=>{
+  const showCartHander = () => {
     setShowCart(true);
   }
 
-  const hideCartHandler=()=>{
+  const hideCartHandler = ()=> {
     setShowCart(false)
   }
 
 
   return (
-    <React.Fragment>
-      
-      <Header onClick={showCartHander} />
+    <CartProvider>
+      {showcart && <Cart onClose={hideCartHandler}/>}
+      <Header onShowCart={showCartHander} />
+      <main>
       <ProductsList  onClick={showCartHander}/>
-      {showcart &&<Cart onClose={hideCartHandler}/>}
+      </main>
+
+      <Footer />
       
-    </React.Fragment>
+    </CartProvider>
   );
 }
 

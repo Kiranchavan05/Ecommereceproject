@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Container} from "react-bootstrap";
 import BottomCartButton from "./BottomCartButton";
+import CartContext from "../store/Cart-Context";
 
 const productsArr = [
   {
@@ -34,6 +35,15 @@ const productsArr = [
 ];
 
 const ProductsList = (props) => {
+
+  const cartCtx=useContext(CartContext);
+
+
+  const addItemHandler=item=>{
+    cartCtx.addItem({...item})
+  }
+
+  
   const product = productsArr.map((prod) => (
     <div
       key={prod.id}
@@ -63,7 +73,7 @@ const ProductsList = (props) => {
         >
           {prod.title}
         </h2>
-        <div style={{ margin: "0px" }}>
+        <div style={{ margin: "20px" }}>
           <img
             src={prod.imageUrl}
             alt={prod.title}
@@ -89,7 +99,7 @@ const ProductsList = (props) => {
           }}
         >
           <span> ${prod.price}</span>
-          <button
+          <button onClick={()=>addItemHandler(prod)}
             style={{
               
               padding: "8px",

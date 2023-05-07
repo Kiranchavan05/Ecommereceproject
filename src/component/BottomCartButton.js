@@ -14,7 +14,8 @@ const BottomCartButton = (props) => {
         marginBottom:'20px',
         padding: "0.2rem",
         color: "#56CCF2",
-        cursor:"pointer"
+        cursor:"pointer",
+        scrollbarColor:'auto'
       }}
       onClick={props.onClick}
     >

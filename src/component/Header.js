@@ -1,10 +1,18 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Container,Nav,Navbar,Button, Alert } from "react-bootstrap";
-import Footer from "./Footer";
+import CartContext from "../store/Cart-Context";
+
 
 
 
 const Header = (props) => {
+
+  const cartCtx=useContext(CartContext)
+
+  const numberOfCartItems=cartCtx.items.reduce((currNumber, item)=>{
+    return currNumber+item.quantity
+
+  },0)
   return (
     <React.Fragment>
 
@@ -17,10 +25,10 @@ const Header = (props) => {
             <Nav.Link href="https://prasadyash2411.github.io/ecom-website/about.html" >STORE</Nav.Link>
             <Nav.Link href="https://prasadyash2411.github.io/ecom-website/about.html#"  >ABOUT</Nav.Link>
           </Nav>
-        <Button onClick={props.onClick}  variant="outline-info">cart</Button>
+        <Button onClick={props.onShowCart}  variant="outline-info">cart</Button>
         <span style={{
           color:'white',
-        }}>2</span>
+        }}>{numberOfCartItems}</span>
         </Container>
         
       </Navbar>
@@ -36,7 +44,7 @@ const Header = (props) => {
           }}>The Generics</h1></Alert.Heading>
       </Alert>
       
-      <Footer />
+      
       </React.Fragment>
 
   );
