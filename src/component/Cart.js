@@ -68,6 +68,7 @@ const Cart = (props) => {
             <span
               style={{
                 alignItems: "center",
+                font:'bold',
                 
                 marginRight: "1.5rem",
                 paddingBottom: "10px",

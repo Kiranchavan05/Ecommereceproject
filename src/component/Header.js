@@ -1,9 +1,7 @@
 import React,{useContext} from "react";
 import { Container,Nav,Navbar,Button, Alert } from "react-bootstrap";
 import CartContext from "../store/Cart-Context";
-
-
-
+// import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
 
@@ -23,7 +21,7 @@ const Header = (props) => {
           <Nav className="me-auto" >
             <Nav.Link href="https://prasadyash2411.github.io/ecom-website/index.html"  >HOME</Nav.Link>
             <Nav.Link href="https://prasadyash2411.github.io/ecom-website/about.html" >STORE</Nav.Link>
-            <Nav.Link href="https://prasadyash2411.github.io/ecom-website/about.html#"  >ABOUT</Nav.Link>
+            <Nav.Link href='/about'  >ABOUT</Nav.Link>
           </Nav>
         <Button onClick={props.onShowCart}  variant="outline-info">cart</Button>
         <span style={{
