@@ -4,10 +4,31 @@ import bandimage from "../assets/bandimage.jpg";
 
 const About = () => {
   return (
-    <Container>
-      <h1>ABOUT</h1>
-      <img src={bandimage} alt="bandpic" />
-      <p>
+    <Container style={{maxWidth:'900px',
+    margin:'auto',
+    fontSize:'22px'}}>
+      <h1
+        style={{
+          fontFamily: "cursive",
+          textAlign: "center",
+          padding: "20px",
+          fontSize: "30px",
+        }}
+      >
+        ABOUT
+      </h1>
+      <img
+        style={{
+          borderRadius:'80%',
+          margin:'20px 50px',
+          float:'left',
+          height: "230px",
+          width: "230px",
+        }}
+        src={bandimage}
+        alt="bandpic"
+      />
+      <p style={{ fontSize: "17px", margin: "20px", color: "#777" }}>
         Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
         sorrows, hates no prosecutors will unfold in the enduring of which were
         born in it? Often leads smallest mistake some pain main responsibilities

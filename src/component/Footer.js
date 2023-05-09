@@ -1,17 +1,20 @@
 import React from "react";
-import { Alert } from "react-bootstrap";
 
 const Footer = () => {
-    return (
-        <Alert className="bg-secondary text-white ">
-        <Alert.Heading ><h3 style={{
-          textAlign:'center',
-          fontSize:'2rem',
-          
-        }}>The Generics</h3></Alert.Heading>
-        
-    </Alert>
-    );
-}
+  return (
+    <h1
+      style={{
+        color: "white",
+        textAlign: "center",
+        fontSize: "3rem",
+        background: "#56CCF2",
+        width: "100%",
+        padding:'1.5rem'
+      }}
+    >
+      The Generics
+    </h1>
+  );
+};
 
-export default Footer
+export default Footer;
