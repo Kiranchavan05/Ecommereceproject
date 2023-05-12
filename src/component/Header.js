@@ -23,6 +23,7 @@ const Header = (props) => {
             <Nav.Link href="/home">HOME</Nav.Link>
             <Nav.Link href="/store">STORE</Nav.Link>
             <Nav.Link href="/about">ABOUT</Nav.Link>
+            <Nav.Link href='/contactus'>Contact us</Nav.Link>
           </Nav>
           <Button onClick={props.onShowCart} variant="outline-info">
             cart

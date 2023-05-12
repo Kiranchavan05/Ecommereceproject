@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import About from "./component/About";
 import Header from './component/Header'
 import Home from "./component/Home";
+import Contactus from "./component/Contactus";
 
 // const router=createBrowserRouter([
 //   {path:'/', element:<p>Welcom</p>},
@@ -39,6 +40,7 @@ function App() {
       <Route path='/home' element={<Home />} />
       <Route path='store' element={<ProductsList />} />
       <Route path='about' element={<About />} />
+      <Route path='/contactus' element={<Contactus />} />
       </Routes>
       
       <Footer />

@@ -9,7 +9,10 @@ const Footer = () => {
         fontSize: "3rem",
         background: "#56CCF2",
         width: "100%",
-        padding:'1.5rem'
+        padding:'1.5rem',
+        marginTop:'18rem'
+        
+        
       }}
     >
       The Generics
