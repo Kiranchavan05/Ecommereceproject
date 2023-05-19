@@ -1,15 +1,18 @@
 // import Cart from "./component/Cart";
 import React ,{useState}from "react";
-
-import Cart from "./component/Cart";
-import ProductsList from './component/ProductList'
-import Footer from "./component/Footer";
-import CartProvider from "./store/CartProvider";
-import { Routes, Route } from "react-router-dom";
-import About from "./component/About";
 import Header from './component/Header'
+import Footer from "./component/Footer";
+import Cart from "./component/Cart";
+// import ProductsList from './component/ProductList'
+import Store from "./component/Store";
+import CartProvider from "./store/CartProvider";
+import ProductDetails from "./component/ProductDetails";
+import { Route,Switch,Redirect } from "react-router-dom";
+import About from "./component/About";
+
 import Home from "./component/Home";
 import Contactus from "./component/Contactus";
+import Login from "./component/Login";
 
 // const router=createBrowserRouter([
 //   {path:'/', element:<p>Welcom</p>},
@@ -20,7 +23,7 @@ import Contactus from "./component/Contactus";
 function App() {
   const [showcart,setShowCart]=useState(false)
 
-  const showCartHander = () => {
+  const showCartHandler = () => {
     setShowCart(true);
   }
 
@@ -32,16 +35,45 @@ function App() {
   return (
     <CartProvider>
       {showcart && <Cart onClose={hideCartHandler}/>}
-      <Header onShowCart={showCartHander} />
+      <Header onShowCart={showCartHandler} />
       {/* <main>
       <ProductsList  onClick={showCartHander}/>
       </main> */}
-      <Routes>
-      <Route path='/home' element={<Home />} />
+      
+      {/* <Route path='/home' element={<Home />} />
       <Route path='store' element={<ProductsList />} />
       <Route path='about' element={<About />} />
-      <Route path='/contactus' element={<Contactus />} />
-      </Routes>
+      <Route path='/contactus' element={<Contactus />} /> */}
+      <main>
+        <Switch>
+          <Route path='/' exact>
+            <Redirect to='/home' />
+          </Route>
+
+          <Route path="/home" exact>
+            <Home />
+          </Route>
+
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/store" exact>
+            <Store onClick={showCartHandler} />
+          </Route>
+
+          <Route path="/contactus">
+            <Contactus />
+          </Route>
+          <Route path="/store/:productId">
+            <ProductDetails />
+          </Route>
+
+          <Route path="/login" >
+            <Login />
+          </Route>
+
+        </Switch>
+      </main>
       
       <Footer />
       

@@ -1,14 +1,32 @@
 import React, { useContext } from "react";
 import { Container, Nav, Navbar, Button} from "react-bootstrap";
 import CartContext from "../store/Cart-Context";
+import SignContext from "../store/Sign-Context";
 // import { NavLink } from "react-router-dom";
+import {useHistory} from 'react-router-dom'
+
 
 const Header = (props) => {
   const cartCtx = useContext(CartContext);
 
+  const SignCtx=useContext(SignContext)
+  const history=useHistory()
+
+  const isLoggedIn=SignCtx.isLoggedIn
+
+  const logoutHandler = () => {
+    SignCtx.logout()
+    history.replace('/Login')
+  }
+
+
   const numberOfCartItems = cartCtx.items.reduce((currNumber, item) => {
     return currNumber + item.quantity;
   }, 0);
+
+
+
+
   return (
     <React.Fragment>
       <Navbar
@@ -24,6 +42,12 @@ const Header = (props) => {
             <Nav.Link href="/store">STORE</Nav.Link>
             <Nav.Link href="/about">ABOUT</Nav.Link>
             <Nav.Link href='/contactus'>Contact us</Nav.Link>
+            {
+              !isLoggedIn && <Nav.Link href='/login'>Login</Nav.Link>
+            }
+            {
+              isLoggedIn && <button onClick={logoutHandler}>Logout</button>
+            }
           </Nav>
           <Button onClick={props.onShowCart} variant="outline-info">
             cart

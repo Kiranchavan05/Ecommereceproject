@@ -4,19 +4,23 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 
+
 /*
 React BootStrap configuration
 
 */
 import '../node_modules/react-bootstrap/dist/react-bootstrap';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { SignContextProvider } from './store/Sign-Context';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <SignContextProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>
+  </SignContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
