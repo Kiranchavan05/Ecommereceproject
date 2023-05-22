@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
 import { Container } from "react-bootstrap";
 import BottomCartButton from "./BottomCartButton";
-import CartContext from "../store/Cart-Context";
-import { Link } from "react-router-dom";
+// import CartContext from "../store/Cart-Context";
+// import { Link } from "react-router-dom";
+import SignContext from "../store/Sign-Context";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 const productsArr = [
   {
@@ -36,18 +39,37 @@ const productsArr = [
 ];
 
 const Store = (props) => {
-  const cartCtx = useContext(CartContext);
-
+  // const cartCtx = useContext(CartContext);
+  const SignCtx=useContext(SignContext)
+  const history=useHistory()
+  const userEmail=SignCtx.email
   const addItemHandler = (item) => {
-    cartCtx.addItem({ ...item, quantity: 1 });
+    SignCtx.addItem({ ...item, quantity: 1 });
+
+    fetch(`https://crudcrud.com/api/f57a974d43b34bdc846d1382ec03cd3f/cart${userEmail}`,
+    {
+      method:'POST',
+      body:JSON.stringify(item),
+      headers:{
+        'Content-Type':'application/json'
+      }
+    })
     console.log(item);
   };
 
+
+
+  const routeChanger = (prod) => {
+    console.log(prod)
+    history.push(`/store/${prod.id}`);
+  }
+
+
   const product = productsArr.map((prod) => (
     <div key={prod.id}>
-      <div>
+      <div >
         <h2>{prod.title}</h2>
-        <div style={{ margin: "30px" }}>
+        <div style={{ margin: "30px" ,}}>
           <img src={prod.imageUrl} alt={prod.title} />
         </div>
         <div >
@@ -62,25 +84,21 @@ const Store = (props) => {
             background: "#56CCF2",}} onClick={() => addItemHandler(prod)}>Add To Cart</button>
         </div>
 
-        <Link
-          style={{
+          <button style={{
             margin: "20px",
             alignItems: "center",
             justifyContent: "space-between",
             background: "black",
-            
-            borderRadius: "10%",
+            color:'violet',
+            borderRadius: "20%",
             marginRight: "1.5rem",
             paddingBottom: "5px",
-            marginTop: "10px",
-            padding:'0.3rem',
+            marginTop: "2rem",
+            padding:'0.5rem',
 
             
-          }}
-          to={`/store/${prod.id}`}
-        >
-          Open Product
-        </Link>
+          }} onClick={()=>routeChanger(prod)}>Open Cart</button>
+         
       </div>
     </div>
   ));

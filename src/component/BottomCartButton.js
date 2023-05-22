@@ -11,11 +11,13 @@ const BottomCartButton = (props) => {
         justifyContent: "space-between",
         width: "10%",
         
-        marginBottom:'20px',
+        marginBottom:'1px',
+        marginTop:'5rem',
         padding: "0.2rem",
         color: "#56CCF2",
         cursor:"pointer",
         scrollbarColor:'auto'
+      
       }}
       onClick={props.onClick}
     >

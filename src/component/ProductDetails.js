@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Container } from "react-bootstrap";
 import {useParams} from "react-router-dom"
-import CartContext from "../store/Cart-Context";
+// import CartContext from "../store/Cart-Context";
+import SignContext from "../store/Sign-Context";
 
 const productArr = [
   {
@@ -38,10 +39,10 @@ const ProductDetails = () => {
   const params = useParams();
   console.log(params);
 
-  const cartCtx = useContext(CartContext);
+  const SignCtx = useContext(SignContext);
 
   const addItemToCart = (product) => {
-    cartCtx.addItem(product);
+    SignCtx.addItem(product);
   };
 
   const product = productArr.find((prod) => prod.id === +params.productId);

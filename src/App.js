@@ -1,18 +1,18 @@
 // import Cart from "./component/Cart";
-import React ,{useState}from "react";
+import React ,{useState ,useContext}from "react";
 import Header from './component/Header'
 import Footer from "./component/Footer";
 import Cart from "./component/Cart";
 // import ProductsList from './component/ProductList'
 import Store from "./component/Store";
-import CartProvider from "./store/CartProvider";
+// import CartProvider from "./store/CartProvider";
 import ProductDetails from "./component/ProductDetails";
 import { Route,Switch,Redirect } from "react-router-dom";
 import About from "./component/About";
-
 import Home from "./component/Home";
 import Contactus from "./component/Contactus";
 import Login from "./component/Login";
+import SignContext from "./store/Sign-Context";
 
 // const router=createBrowserRouter([
 //   {path:'/', element:<p>Welcom</p>},
@@ -22,6 +22,7 @@ import Login from "./component/Login";
 
 function App() {
   const [showcart,setShowCart]=useState(false)
+  const SignCtx=useContext(SignContext)
 
   const showCartHandler = () => {
     setShowCart(true);
@@ -32,8 +33,11 @@ function App() {
   }
 
 
+  const isLoggedIn=SignCtx.isLoggedIn
+
+
   return (
-    <CartProvider>
+    <>
       {showcart && <Cart onClose={hideCartHandler}/>}
       <Header onShowCart={showCartHandler} />
       {/* <main>
@@ -47,7 +51,7 @@ function App() {
       <main>
         <Switch>
           <Route path='/' exact>
-            <Redirect to='/home' />
+            <Redirect to='/login' />
           </Route>
 
           <Route path="/home" exact>
@@ -58,15 +62,16 @@ function App() {
             <About />
           </Route>
           <Route path="/store" exact>
-            <Store onClick={showCartHandler} />
+           {SignCtx.token &&  <Store onClick={showCartHandler} />} 
+           {!SignCtx.token && <Redirect to='/login' /> }
           </Route>
 
           <Route path="/contactus">
             <Contactus />
           </Route>
-          <Route path="/store/:productId">
+          {SignCtx.token && <Route path="/store/:productId">
             <ProductDetails />
-          </Route>
+          </Route>}
 
           <Route path="/login" >
             <Login />
@@ -77,7 +82,7 @@ function App() {
       
       <Footer />
       
-    </CartProvider>
+    </>
   );
 }
 

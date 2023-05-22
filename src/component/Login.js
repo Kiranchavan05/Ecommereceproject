@@ -57,7 +57,7 @@ const Login = () => {
       }
     }).then((data)=>{
       // console.log(data)
-      SignCtx.login(data.idToken)
+      SignCtx.login(data.idToken, data.email)
       history.replace('/store')
     }).catch((err)=>{
       alert(err.message)

@@ -1,7 +1,8 @@
 import React,{useContext} from "react";
-import CartContext from "../store/Cart-Context";
+// import CartContext from "../store/Cart-Context";
 
 import  Modal  from './Modal'
+import SignContext from "../store/Sign-Context";
 
 // const cartElements = [
 //   {
@@ -26,8 +27,15 @@ import  Modal  from './Modal'
 
 const Cart = (props) => {
 
-  const cartCtx=useContext(CartContext)
-  const totalAmount=`$${cartCtx.totalAmount}`
+  const SignCtx=useContext(SignContext)
+  const totalAmount=`$${SignCtx.totalAmount}`
+
+
+  const removeItemHandler=(id)=>{
+    console.log(id)
+    SignCtx.removeItem(id)
+
+  }
 
   
   return (
@@ -102,9 +110,9 @@ const Cart = (props) => {
             </span>
           </div>
           <div>
-            {cartCtx.items.map((prod) => (
-              <div style={{ fontsize: "1px", display: "flex" }}>
-                <div>
+            {SignCtx.items.map((prod) => (
+              <div style={{ fontsize: "1px", display: "flex" }} key={prod.id}>
+                <div >
                   <span
                     style={{
                       alignItems: "center",
@@ -180,7 +188,7 @@ const Cart = (props) => {
                         outline: "none",
                         padding: "0px 7px",
                       }}
-                    >
+                    onClick={()=>removeItemHandler(prod.id)}>
                       REMOVE
                     </button>
                   </span>
